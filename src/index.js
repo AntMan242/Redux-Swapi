@@ -3,7 +3,10 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
+// import axios from 'axios';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 import rootReducer from "./reducers";
 // needed dependancies
 // applyMiddleware from redux
@@ -12,7 +15,8 @@ import rootReducer from "./reducers";
 // rootReducer from ./reducers
 
 const store = createStore(
-  rootReducer
+  rootReducer,
+  applyMiddleware(thunk, logger)
   /* applyMiddleware goes here */
 );
 
